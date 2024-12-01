@@ -1,11 +1,12 @@
 include $(ROOTDIR)/rules.mk
 
 PKG_NAME:=dnsmasq
-PKG_VERSION:=2.89
+PKG_VERSION:=2.90
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
-PKG_SOURCE_URL:=https://thekelleys.org.uk/dnsmasq/
-PKG_HASH:=02bd230346cf0b9d5909f5e151df168b2707103785eb616b56685855adebb609
+PKG_SOURCE_DATE:=2024-10-05
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_URL:=git://thekelleys.org.uk/dnsmasq.git
+PKG_SOURCE_VERSION:=d7d682637d1a85947891d10b5b16b99db852aa38
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -20,12 +21,22 @@ ifneq ($(CONFIG_FIRMWARE_INCLUDE_IPSET),y)
 COPTS += -DNO_IPSET
 endif
 
+# regex support
+ifeq ($(CONFIG_FIRMWARE_DNSMASQ_REGEX),y)
+	COPTS += -DHAVE_REGEX
+
+	ifeq ($(CONFIG_FIRMWARE_INCLUDE_IPSET),y)
+		COPTS += -DHAVE_REGEX_IPSET
+	endif
+endif
+
 MAKE_FLAGS := \
 	$(TARGET_CONFIGURE_OPTS) \
-	CFLAGS="$(TARGET_CFLAGS) $(TARGET_CPPFLAGS)" \
+	CFLAGS="$(TARGET_CFLAGS)" \
 	LDFLAGS="$(TARGET_LDFLAGS)" \
 	COPTS="$(COPTS)" \
-	PREFIX=""
+	CUSTOM_VERSION="$(PKG_VERSION)" \
+	PREFIX=
 
 $(eval $(call BuildPackage,dnsmasq))
 

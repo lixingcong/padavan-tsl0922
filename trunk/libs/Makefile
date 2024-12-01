@@ -176,6 +176,10 @@ ifneq ($(filter y,$(CONFIG_FIRMWARE_INCLUDE_WING) $(CONFIG_FIRMWARE_INCLUDE_TROJ
 LIBS_INCLUDE_BOOST=y
 endif
 
+ifeq ($(CONFIG_FIRMWARE_DNSMASQ_REGEX),y)
+LIBS_INCLUDE_LIBPCRE=y
+endif
+
 dir_y						+= libz
 dir_$(LIBS_INCLUDE_NCURSES)			+= libncurses
 dir_$(LIBS_INCLUDE_LIBLZO)			+= liblzo

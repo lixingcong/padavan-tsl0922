@@ -1,0 +1,27 @@
+commit 278643b3709dd31c78712ded6d8d96a9c0ca5078
+Author: lixingcong <lixingcong@live.com>
+Date:   2024-12-01 14:20:43 +0800
+
+    custom version
+
+diff --git a/Makefile b/Makefile
+index 463bc35..d87d768 100644
+--- a/Makefile
++++ b/Makefile
+@@ -31,6 +31,7 @@ CFLAGS        = -Wall -W -g
+ endif
+ LDFLAGS       = 
+ COPTS         = 
++CUSTOM_VERSION= 
+ RPM_OPT_FLAGS = 
+ LIBS          = 
+ LUA           = lua
+@@ -79,7 +80,7 @@ regex_libs =    `echo $(COPTS) | $(top)/bld/pkg-wrapper HAVE_REGEX $(PKG_CONFIG)
+ sunos_libs =    `if uname | grep SunOS >/dev/null 2>&1; then echo -lsocket -lnsl -lposix4; fi`
+ nft_cflags =    `echo $(COPTS) | $(top)/bld/pkg-wrapper HAVE_NFTSET $(PKG_CONFIG) --cflags libnftables` 
+ nft_libs =      `echo $(COPTS) | $(top)/bld/pkg-wrapper HAVE_NFTSET $(PKG_CONFIG) --libs libnftables`
+-version =       -DVERSION='\"`$(top)/bld/get-version $(top)`\"'
++version =       -DVERSION='\"`if [ ! "x" = "x$(CUSTOM_VERSION)" ]; then echo $(CUSTOM_VERSION); else $(top)/bld/get-version $(top); fi`\"'
+ 
+ sum?=$(shell $(CC) -DDNSMASQ_COMPILE_OPTS $(COPTS) -E $(top)/$(SRC)/dnsmasq.h | ( md5sum 2>/dev/null || md5 ) | cut -f 1 -d ' ')
+ sum!=$(CC) -DDNSMASQ_COMPILE_OPTS $(COPTS) -E $(top)/$(SRC)/dnsmasq.h | ( md5sum 2>/dev/null || md5 ) | cut -f 1 -d ' '
