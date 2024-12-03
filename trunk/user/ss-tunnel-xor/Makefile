@@ -5,7 +5,7 @@ PKG_SOURCE_DATE:=2024-12-03
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/lixingcong/ss-tunnel-xor
-PKG_SOURCE_VERSION:=07e2ee163768fd0535b5012893fa8f22dba68407
+PKG_SOURCE_VERSION:=6f7f28b497482cb515925acfbabf5e2f21ab0feb
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
