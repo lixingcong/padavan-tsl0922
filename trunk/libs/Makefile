@@ -180,6 +180,10 @@ ifeq ($(CONFIG_FIRMWARE_DNSMASQ_REGEX),y)
 LIBS_INCLUDE_LIBPCRE=y
 endif
 
+ifeq ($(CONFIG_FIRMWARE_SS_TUNNEL_XOR),y)
+LIBS_INCLUDE_LIBEV=y
+endif
+
 dir_y						+= libz
 dir_$(LIBS_INCLUDE_NCURSES)			+= libncurses
 dir_$(LIBS_INCLUDE_LIBLZO)			+= liblzo
