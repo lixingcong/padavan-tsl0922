@@ -189,6 +189,7 @@ dir_$(CONFIG_FIRMWARE_INCLUDE_VLMCSD)			+= vlmcsd
 dir_$(CONFIG_FIRMWARE_INCLUDE_DNSFORWARDER)		+= dns-forwarder
 dir_$(SHADOWSOCKS_ENABLE)				+= shadowsocks
 dir_$(CONFIG_FIRMWARE_SS_TUNNEL_RC4_MD5)	+= ss-tunnel-rc4-md5
+dir_$(CONFIG_FIRMWARE_MINIVTUN)	+= minivtun
 dir_$(CONFIG_FIRMWARE_INCLUDE_LRZSZ)			+= lrzsz
 dir_$(CONFIG_FIRMWARE_INCLUDE_GDUT_DRCOM)		+= gdut-drcom
 dir_$(CONFIG_FIRMWARE_INCLUDE_DOGCOM)			+= dogcom
